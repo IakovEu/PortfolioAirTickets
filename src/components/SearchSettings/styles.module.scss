@@ -1,0 +1,24 @@
+.settings {
+	.sideBlock {
+		background-color: #e8ebf2;
+		border-radius: 10px;
+		margin-bottom: 47px;
+        padding: 19px 19px 25px;
+
+		.title {
+			margin: 0 0 10px;
+			font-size: 20px;
+		}
+		.position {
+			margin-left: 8px;
+			display: flex;
+			align-items: center;
+
+			.variant {
+				margin: 0 0 0 10px;
+				font-size: 16px;
+				color: #858AE3;
+			}
+		}
+	}
+}

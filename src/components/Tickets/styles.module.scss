@@ -1,0 +1,25 @@
+.container {
+	min-height: 836px;
+
+	.button {
+		text-transform: none;
+		font-size: 16px;
+		background-color: #e8ebf2;
+		color: #4e148c;
+		font-family: Inter, sans-serif;
+		font-weight: 800;
+		width: 242px;
+		padding: 13px 0;
+		border: 1px solid #4e148c !important; // не ну а че она?
+
+		&.first {
+			border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+
+		&.third {
+			border-top-right-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+	}
+}
