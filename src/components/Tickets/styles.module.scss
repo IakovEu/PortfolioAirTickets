@@ -21,5 +21,82 @@
 			border-top-right-radius: 10px;
 			border-bottom-right-radius: 10px;
 		}
+
+		&.activeBtn {
+			color: #ffffff;
+			background-color: #4e148c;
+		}
+	}
+
+	.tickets {
+		margin: 29px 0 74px;
+
+		.ticket {
+			height: 174px;
+			margin-bottom: 47px;
+			background-color: #e8ebf2;
+			border-radius: 10px;
+			display: flex;
+			justify-content: space-between;
+
+			.leftPart {
+				margin: 38px 0 0 39px;
+
+				.price {
+					margin: 0;
+					font-size: 32px;
+					font-weight: 800;
+				}
+
+				.destination {
+					margin: 25px 0 0 0;
+					color: #858ae3;
+				}
+
+				.time {
+					margin: 9px 0 0 0;
+				}
+			}
+
+			.middlePart {
+				.vPuti {
+					margin: 102px 0 0 0;
+					color: #858ae3;
+				}
+				.duration {
+					margin: 9px 0 0 0;
+				}
+			}
+
+			.rightPart {
+				.logo {
+					margin: 30px 40px 0 0;
+					width: 160px;
+					height: 40px;
+				}
+
+				.peresadki {
+					margin: 28px 0 0 0;
+					color: #858ae3;
+				}
+
+				.connectionAmount {
+					margin: 9px 0 0 0;
+				}
+			}
+		}
+	}
+
+	.singleBtn {
+		text-transform: none;
+		font-family: Inter, sans-serif;
+		font-size: 24px;
+		font-weight: 800;
+		color: #ffffff;
+		background-color: #4e148c;
+		width: 100%;
+		height: 62px;
+		border-radius: 10px;
+		margin-bottom: 59px;
 	}
 }

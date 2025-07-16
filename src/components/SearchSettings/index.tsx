@@ -1,14 +1,3 @@
-import {
-	changeFirstCB,
-	changeSecondCB,
-	changeThirdCB,
-	changeFourthCB,
-} from '../../reducers/checkboxSlice';
-import {
-	changeFirstRad,
-	changeSecondRad,
-	changeThirdRad,
-} from '../../reducers/radioSlice';
 import st from './styles.module.scss';
 import Checkbox from '@mui/material/Checkbox';
 import type { RootDispatch } from '../../reducers/store';
@@ -17,19 +6,17 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
+import { changeCB } from '../../reducers/checkboxSlice';
+import { changeRad } from '../../reducers/radioSlice';
 
 export const SearchSettings = () => {
 	const dispatch = useDispatch<RootDispatch>();
+	const airlines = ['Победа', 'Red Wings', 'S7 Airlines'];
 	const transfer = [
-		{ how: 'Без пересадок', ff: changeFirstCB },
-		{ how: '1 пересадка', ff: changeSecondCB },
-		{ how: '2 пересадки', ff: changeThirdCB },
-		{ how: '3 пересадки ', ff: changeFourthCB },
-	];
-	const airlines = [
-		{ how: 'Победа', ff: changeFirstRad },
-		{ how: 'Red Wings', ff: changeSecondRad },
-		{ how: 'S7 Airlines', ff: changeThirdRad },
+		'Без пересадок',
+		'1 пересадка',
+		'2 пересадки',
+		'3 пересадки ',
 	];
 
 	return (
@@ -47,10 +34,10 @@ export const SearchSettings = () => {
 									},
 								}}
 								onChange={() => {
-									dispatch(el.ff());
+									dispatch(changeCB(ind + 1));
 								}}
 							/>
-							<p className={st.variant}>{el.how}</p>
+							<p className={st.variant}>{el}</p>
 						</div>
 					);
 				})}
@@ -66,7 +53,7 @@ export const SearchSettings = () => {
 							return (
 								<FormControlLabel
 									key={ind}
-									value={el.how}
+									value={el}
 									control={
 										<Radio
 											sx={{
@@ -76,7 +63,7 @@ export const SearchSettings = () => {
 												},
 											}}
 											onChange={() => {
-												dispatch(el.ff());
+												dispatch(changeRad(ind + 1));
 											}}
 										/>
 									}
@@ -87,7 +74,7 @@ export const SearchSettings = () => {
 												fontFamily: 'Inter',
 												marginLeft: '10px',
 											}}>
-											{el.how}
+											{el}
 										</Typography>
 									}
 								/>

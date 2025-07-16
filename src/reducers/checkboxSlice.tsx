@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+type CheckboxKeys = 'checkbox1' | 'checkbox2' | 'checkbox3' | 'checkbox4';
+
 export const checkboxSlice = createSlice({
 	name: 'checkbox',
 	initialState: {
@@ -9,20 +11,12 @@ export const checkboxSlice = createSlice({
 		checkbox4: false,
 	},
 	reducers: {
-		changeFirstCB: (state) => {
-			state.checkbox1 = !state.checkbox1;
-		},
-		changeSecondCB: (state) => {
-			state.checkbox2 = !state.checkbox2;
-		},
-		changeThirdCB: (state) => {
-			state.checkbox3 = !state.checkbox3;
-		},
-		changeFourthCB: (state) => {
-			state.checkbox4 = !state.checkbox4;
+		changeCB: (state, action) => {
+			const checkboxKey: CheckboxKeys = ('checkbox' +
+				action.payload) as CheckboxKeys;
+			state[checkboxKey] = !state[checkboxKey];
 		},
 	},
 });
 
-export const { changeFirstCB, changeSecondCB, changeThirdCB, changeFourthCB } =
-	checkboxSlice.actions;
+export const { changeCB } = checkboxSlice.actions;

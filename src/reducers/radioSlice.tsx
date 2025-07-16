@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+type RadioKeys = 'radio1' | 'radio2' | 'radio3';
+
 export const radioSlice = createSlice({
 	name: 'radio',
 	initialState: {
@@ -8,23 +10,13 @@ export const radioSlice = createSlice({
 		radio3: false,
 	},
 	reducers: {
-		changeFirstRad: (state) => {
-			state.radio1 = true;
-			state.radio2 = false;
-			state.radio3 = false;
-		},
-		changeSecondRad: (state) => {
-			state.radio1 = false;
-			state.radio2 = true;
-			state.radio3 = false;
-		},
-		changeThirdRad: (state) => {
-			state.radio1 = false;
-			state.radio2 = false;
-			state.radio3 = true;
+		changeRad: (state, action) => {
+			for (const rad in state) {
+				const radioKey: RadioKeys = ('radio' + action.payload) as RadioKeys;
+				state[rad as RadioKeys] = rad === radioKey;
+			}
 		},
 	},
 });
 
-export const { changeFirstRad, changeSecondRad, changeThirdRad } =
-	radioSlice.actions;
+export const { changeRad } = radioSlice.actions;
