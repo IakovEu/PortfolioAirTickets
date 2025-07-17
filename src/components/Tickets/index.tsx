@@ -5,24 +5,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, RootDispatch } from '../../reducers/store';
 import { changeBtn } from '../../reducers/buttonSlice';
 import type { ButtonKeys } from '../../reducers/buttonSlice';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { fakeAsync } from '../../reducers/ticketSlice';
 import DP from '../../assets/Pobeda.png';
 import WZ from '../../assets/RedWings.png';
 import S7 from '../../assets/S7.png';
+import { sortFunction } from '../../sortFunction';
 
 export const Tickets = () => {
-	const dispatch = useDispatch<RootDispatch>();
+	// Для удобства по отдельности вытащил
 	const btns = useSelector((state: RootState) => state.button);
-	const tickets = useSelector((state: RootState) => state.ticket);
+	const tickets = useSelector((state: RootState) => state.ticket.entities);
+	const checkboxes = useSelector((state: RootState) => state.checkbox);
+	const radios = useSelector((state: RootState) => state.radio);
+	const dispatch = useDispatch<RootDispatch>();
 	const variants = ['Самый дешевый', 'Самый быстрый', 'Самый оптимальный'];
 	const airlines = { DP, WZ, S7 };
-	type Companies = 'DP' | 'WZ' | 'S7';
+	type Airlines = 'DP' | 'WZ' | 'S7';
 
 	useEffect(() => {
 		dispatch(fakeAsync());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const sortedTickets = useMemo(() => {
+		if (tickets !== undefined) {
+			return sortFunction(Object.values(tickets), btns, checkboxes, radios);
+		}
+		return [];
+	}, [tickets, btns, checkboxes, radios]);
 
 	return (
 		<div className={st.container}>
@@ -51,9 +62,9 @@ export const Tickets = () => {
 				})}
 			</ButtonGroup>
 			<div className={st.tickets}>
-				{Object.values(tickets.entities).map((el, ind) => {
+				{sortedTickets?.map((el) => {
 					return (
-						<div className={st.ticket} key={ind}>
+						<div className={st.ticket} key={el.id}>
 							<div className={st.leftPart}>
 								<p className={st.price}>{el.price} Р</p>
 								<p className={st.destination}>{el.from + ' - ' + el.to}</p>
@@ -68,7 +79,7 @@ export const Tickets = () => {
 							<div className={st.rightPart}>
 								<img
 									className={st.logo}
-									src={airlines[el.company as Companies]}
+									src={airlines[el.company as Airlines]}
 									alt="*"
 								/>
 								<p className={st.peresadki}>Пересадки</p>

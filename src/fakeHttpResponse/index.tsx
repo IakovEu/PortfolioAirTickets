@@ -63,7 +63,7 @@ export const serverData: Ticket[] = [
 		from: 'VKO',
 		to: 'ESB',
 		company: 'S7',
-		price: 10800,
+		price: 15055,
 		currency: 'RUB',
 		time: {
 			startTime: '07:00',
@@ -77,7 +77,7 @@ export const serverData: Ticket[] = [
 		from: 'VKO',
 		to: 'AYT',
 		company: 'DP',
-		price: 15055,
+		price: 10800,
 		currency: 'RUB',
 		time: {
 			startTime: '12:00',
@@ -141,5 +141,5 @@ export const serverData: Ticket[] = [
 		},
 		duration: '5 ч 0 мин',
 		connectionAmount: 1,
-	}
+	},
 ];

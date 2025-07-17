@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import { serverData } from '../fakeHttpResponse';
 
-interface Ticket {
+export interface Ticket {
 	id: number;
 	from: string;
 	to: string;
