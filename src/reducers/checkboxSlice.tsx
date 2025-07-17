@@ -6,7 +6,7 @@ export type Checkbox = {
 	checkbox3: boolean;
 	checkbox4: boolean;
 };
-type CheckboxKeys = 'checkbox1' | 'checkbox2' | 'checkbox3' | 'checkbox4';
+export type CheckboxKeys = 'checkbox1' | 'checkbox2' | 'checkbox3' | 'checkbox4';
 
 const initialState: Checkbox = {
 	checkbox1: false,

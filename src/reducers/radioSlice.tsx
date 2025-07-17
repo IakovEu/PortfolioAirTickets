@@ -1,14 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type RadioKeys = 'radio1' | 'radio2' | 'radio3';
+export type Radio = {
+	radio1: boolean;
+	radio2: boolean;
+	radio3: boolean;
+};
+export type RadioKeys = 'radio1' | 'radio2' | 'radio3';
+
+const initialState: Radio = {
+	radio1: false,
+	radio2: false,
+	radio3: false,
+};
 
 export const radioSlice = createSlice({
 	name: 'radio',
-	initialState: {
-		radio1: false,
-		radio2: false,
-		radio3: false,
-	},
+	initialState,
 	reducers: {
 		changeRad: (state, action) => {
 			for (const rad in state) {
