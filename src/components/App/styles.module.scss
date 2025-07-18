@@ -4,3 +4,14 @@
 	color: #4e148c;
 }
 
+@media (max-width: 1060px) {
+	.layout {
+		margin: 19px auto 0;
+	}
+}
+
+@media (max-width: 750px) {
+	.layout {
+		margin: 31px auto 0;
+	}
+}

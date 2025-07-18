@@ -1,6 +1,29 @@
 .main {
 	margin-top: 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	gap: 50px;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
+}
+
+@media (max-width: 1060px) {
+	.main {
+		margin-top: 27px;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+
+		.showOrHideSettings {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 750px) {
+	.main {
+		margin-top: 23px;
+	}
 }

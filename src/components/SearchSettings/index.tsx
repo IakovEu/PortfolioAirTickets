@@ -1,15 +1,19 @@
 import st from './styles.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import Checkbox from '@mui/material/Checkbox';
-import type { RootDispatch } from '../../reducers/store';
-import { useDispatch } from 'react-redux';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
 import { changeCB } from '../../reducers/checkboxSlice';
 import { changeRad } from '../../reducers/radioSlice';
+import type { RootState, RootDispatch } from '../../reducers/store';
+import type { CheckboxKeys } from '../../reducers/checkboxSlice';
+import type { RadioKeys } from '../../reducers/radioSlice';
 
 export const SearchSettings = () => {
+	const checkboxes = useSelector((state: RootState) => state.checkbox);
+	const radios = useSelector((state: RootState) => state.radio);
 	const dispatch = useDispatch<RootDispatch>();
 	const airlines = ['Победа', 'Red Wings', 'S7 Airlines'];
 	const transfer = [
@@ -22,17 +26,16 @@ export const SearchSettings = () => {
 	return (
 		<div className={st.settings}>
 			<div className={st.sideBlock}>
-				<h2 className={st.title}>Количество пересадок</h2>
+				<h2 className={st.title}>
+					<span className={st.amount}>Количество пересадок</span>
+					<span className={st.newAmount}>Пересадки</span>
+				</h2>
 				{transfer.map((el, ind) => {
 					return (
 						<div className={st.position} key={ind}>
 							<Checkbox
-								sx={{
-									color: '#4e148c',
-									'&.Mui-checked': {
-										color: '#4e148c',
-									},
-								}}
+								checked={checkboxes[('checkbox' + (ind + 1)) as CheckboxKeys]}
+								className={st.checkbox}
 								onChange={() => {
 									dispatch(changeCB(ind + 1));
 								}}
@@ -45,38 +48,22 @@ export const SearchSettings = () => {
 			<div className={st.sideBlock}>
 				<h2 className={st.title}>Компании</h2>
 				<div className={st.position}>
-					<RadioGroup
-						sx={{
-							marginLeft: '10px',
-						}}>
+					<RadioGroup className={st.radioGroup}>
 						{airlines.map((el, ind) => {
 							return (
 								<FormControlLabel
+									checked={radios[('radio' + (ind + 1)) as RadioKeys]}
 									key={ind}
 									value={el}
 									control={
 										<Radio
-											sx={{
-												color: '#4e148c',
-												'&.Mui-checked': {
-													color: '#4e148c',
-												},
-											}}
+											className={st.radio}
 											onChange={() => {
 												dispatch(changeRad(ind + 1));
 											}}
 										/>
 									}
-									label={
-										<Typography
-											sx={{
-												color: '#858AE3',
-												fontFamily: 'Inter',
-												marginLeft: '10px',
-											}}>
-											{el}
-										</Typography>
-									}
+									label={<Typography className={st.variant}>{el}</Typography>}
 								/>
 							);
 						})}
