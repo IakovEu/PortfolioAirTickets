@@ -34,13 +34,16 @@ export const SearchSettings = () => {
 					return (
 						<div className={st.position} key={ind}>
 							<Checkbox
+								id={`checkbox-${ind}`}
 								checked={checkboxes[('checkbox' + (ind + 1)) as CheckboxKeys]}
 								className={st.checkbox}
 								onChange={() => {
 									dispatch(changeCB(ind + 1));
 								}}
 							/>
-							<p className={st.variant}>{el}</p>
+							<label htmlFor={`checkbox-${ind}`} style={{ cursor: 'pointer' }}>
+								<p className={st.variant}>{el}</p>
+							</label>
 						</div>
 					);
 				})}
